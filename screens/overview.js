@@ -1,23 +1,26 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import movieData from "../data/data";
+import MovieSingle from "../components/MovieSingle";
 
-export default function overview() {
+export default function Overview() {
   return (
     <FlatList
       data={movieData}
+      keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
         <View style={styles.container}>
           <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.releaseDate}>{item.director}</Text>
+          <Text style={styles.releaseDate}>Directed by: {item.director}</Text>
         </View>
       )}
-    ></FlatList>
+    />
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: "#e0e0e0",
