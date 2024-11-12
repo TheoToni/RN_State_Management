@@ -1,7 +1,8 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import movieData from "../data/data";
-import MovieListItem from "./MovieListItem";
+import MovieListItem from "../components/MovieListItem";
+
 export default function Overview() {
   const renderItem = ({ item }) => <MovieListItem item={item} />;
   return (

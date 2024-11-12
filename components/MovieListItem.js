@@ -1,15 +1,13 @@
-// components/MovieListItem.js
-import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const MovieListItem = ({ item }) => {
+export default function MovieListItem({ item }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.releaseDate}>Directed by: {item.director}</Text>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -30,5 +28,3 @@ const styles = StyleSheet.create({
     color: "#666",
   },
 });
-
-export default MovieListItem;
