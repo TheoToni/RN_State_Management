@@ -1,17 +1,15 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+// components/MovieListItem.js
 import React from "react";
-import movieData from "../data/data";
-import MovieListItem from "./MovieListItem";
-export default function Overview() {
-  const renderItem = ({ item }) => <MovieListItem item={item} />;
+import { StyleSheet, Text, View } from "react-native";
+
+const MovieListItem = ({ item }) => {
   return (
-    <FlatList
-      data={movieData}
-      keyExtractor={(item) => item.id.toString()}
-      renderItem={renderItem}
-    />
+    <View style={styles.container}>
+      <Text style={styles.title}>{item.title}</Text>
+      <Text style={styles.releaseDate}>Directed by: {item.director}</Text>
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -32,3 +30,5 @@ const styles = StyleSheet.create({
     color: "#666",
   },
 });
+
+export default MovieListItem;
