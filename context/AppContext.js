@@ -1,17 +1,36 @@
 import React, { createContext, useState } from "react";
 
-// Create the context
 export const AppContext = createContext();
 
-// Create the provider component
 export const AppProvider = ({ children }) => {
-  const [count, setCount] = useState(0);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
 
-  const increment = () => setCount(count + 1);
-  const decrement = () => setCount(count - 1);
+  const toggleFavorite = (movie) => {
+    setFavoriteMovies((prevFavorites) => {
+      const isAlreadyFavorite = prevFavorites.some(
+        (favMovie) => favMovie.id === movie.id
+      );
+
+      if (isAlreadyFavorite) {
+        return prevFavorites.filter((favMovie) => favMovie.id !== movie.id);
+      } else {
+        return [...prevFavorites, movie];
+      }
+    });
+  };
+
+  const isFavorite = (movieId) => {
+    return favoriteMovies.some((movie) => movie.id === movieId);
+  };
 
   return (
-    <AppContext.Provider value={{ count, increment, decrement }}>
+    <AppContext.Provider
+      value={{
+        favoriteMovies,
+        toggleFavorite,
+        isFavorite,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

@@ -1,6 +1,15 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+
 export default function MovieListItem({ item }) {
+  const { toggleFavorite, isFavorite } = useContext(AppContext);
+
+  function pressHandler() {
+    toggleFavorite(item);
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.twoColContainer}>
@@ -9,9 +18,13 @@ export default function MovieListItem({ item }) {
           <Text style={styles.releaseDate}>Directed by: {item.director}</Text>
           <Text style={styles.rating}>Rating: {item.rating}</Text>
         </View>
-        <View>
-          <Ionicons name="star" size={24} color="gold" />
-        </View>
+        <Pressable onPress={pressHandler}>
+          <Ionicons
+            name="star"
+            size={24}
+            color={isFavorite(item.id) ? "gold" : "black"}
+          />
+        </Pressable>
       </View>
     </View>
   );
